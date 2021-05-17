@@ -9,7 +9,7 @@ const SettingScreen = ({ navigation }) => {
     const { toggleTheme } = useContext(AuthContext);
     const theme = useTheme();
     return (
-        <View style={[styles.container, {backgroundColor: theme.colors.background}]}>
+        <View style={[styles.container, {backgroundColor: theme.colors.darkBackground}]}>
             <TouchableOpacity style={styles.content_row} onPress={() => toggleTheme()}>
                 <FontAwesome5 name={theme.dark?"sun":"moon"} color={Colors.blueA400} size={24} />
                 <Text style={[styles.content_title, {color: theme.colors.text}]}>Chế độ {theme.dark?"sáng":"tối"}</Text>

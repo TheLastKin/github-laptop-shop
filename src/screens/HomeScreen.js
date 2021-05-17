@@ -18,8 +18,6 @@ const HomeScreen = () => {
     const [changeContent, setChangeContent] = useState(false);
     const theme = useTheme();
 
-    let initialRender = false;
-
     useEffect(() => {
         fetch('http://10.0.2.2:4000/api/products/laptop/brands')
             .then(res => res.json())
@@ -43,10 +41,10 @@ const HomeScreen = () => {
     }
 
     useEffect(() => {
-        if (initialRender && searchByBrand.length != 0){
+        if (searchByBrand.length != 0){
             search();
         }else{
-            initialRender = true;
+            setChangeContent(false);
         }
     }, [searchByBrand]);
 
@@ -119,16 +117,13 @@ const HomeScreen = () => {
     const onBrandSelected = (brand, index) => {
         if(brand == searchByBrand){
             return(
-                <TouchableOpacity key={index} style={[styles.brand_active, {backgroundColor: theme.colors.background}]} onPress={() => {
-                    setSearchByBrand('');
-                    setChangeContent(false);
-                }}>
-                    <Text style={{ color: theme.colors.text }}>{brand}</Text>
+                <TouchableOpacity key={index} style={styles.brand_active} onPress={() => setSearchByBrand('')}>
+                    <Text style={{ color: Colors.white }}>{brand}</Text>
                 </TouchableOpacity>
             );
         }else{
             return(
-                <TouchableOpacity key={index} style={[styles.brand, {backgroundColor: theme.colors.background}]} onPress={() => setSearchByBrand(brand)}>
+                <TouchableOpacity key={index} style={[styles.brand, {backgroundColor: theme.colors.darkBackground}]} onPress={() => setSearchByBrand(brand)}>
                     <Text style={{ color: theme.colors.text }}>{brand}</Text>
                 </TouchableOpacity>
             );
@@ -141,11 +136,11 @@ const HomeScreen = () => {
         )
     };
     return(
-        <View style={[styles.container, {backgroundColor: theme.colors.background}]}>
+        <View style={[styles.container, {backgroundColor: theme.colors.darkBackground}]}>
             <View style={styles.tophead}>
                 <View style={styles.search_bar}>
                     <TextInput
-                        style={[styles.search_box, {backgroundColor: theme.colors.background}]}
+                        style={[styles.search_box, {backgroundColor: theme.colors.darkBackground}]}
                         placeholder="Tìm kiếm..."
                         placeholderTextColor={theme.colors.text}
                         onChangeText={(text) => onChangeSearchQuery(text)}

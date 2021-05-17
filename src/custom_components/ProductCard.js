@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
 import { StyleSheet, View, Image, Text } from 'react-native';
-import { Colors } from 'react-native-paper';
+import { Colors, useTheme } from 'react-native-paper';
 import ProductModal from './ProductModal';
 import StarRating from './StarRating';
 
 const ProductCard = ({item}) => {
     const [modalVisible, setModalVisible] = useState(false);
+    const theme = useTheme();
 
     const updateViewCount = async () => {
         openModal();
@@ -38,16 +39,16 @@ const ProductCard = ({item}) => {
         return item.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
     }
     return(
-        <View style={styles.card}>
+        <View style={[styles.card, {backgroundColor: theme.colors.background}]}>
             <Image
                 style={styles.cardImage}
                 source={{ uri: "http://10.0.2.2:4000/images/" + item.image }}
                 width={100}
                 height={100} />
             <View style={styles.cardContent}>
-                <Text style={styles.cardName} onPress={() => updateViewCount()}>{formatName()}</Text>
-                <StarRating rating={item.rating} fontSize={14} starColor={Colors.yellow800} ratingColor={Colors.black}/>
-                <Text style={styles.cardRow}>Giá: {formatPrice()} VNĐ</Text>
+                <Text style={[styles.cardName, {color: theme.colors.text}]} onPress={() => updateViewCount()}>{formatName()}</Text>
+                <StarRating rating={item.rating} fontSize={14} starColor={Colors.yellow800} ratingColor={theme.colors.text}/>
+                <Text style={[styles.cardRow, {color: theme.colors.text}]}>Giá: {formatPrice()} VNĐ</Text>
                 {isAvailable()}
             </View>
             <ProductModal item={item} visible={modalVisible} dismiss={dismissModal}/>

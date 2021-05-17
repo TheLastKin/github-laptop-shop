@@ -92,7 +92,7 @@ const ProductModal = ({item, visible, dismiss}) => {
     }
 
     const formatDescription = () => {
-        item.description = item.description.replace(/\\n/g, '\n');
+        item.description = item.description.replace(/\\n/g, '\n').replace(/\\r/g, '\r');
         if(showMore){
             return (
                 <View style={[styles.product_description, {borderColor: theme.colors.text}]}>
@@ -141,7 +141,7 @@ const ProductModal = ({item, visible, dismiss}) => {
                 >
                 <View style={[styles.content, {backgroundColor: theme.colors.background}]}>
                     <Text style={[styles.product_name, {color: theme.colors.text}]}>{item.name}</Text>
-                    <StarRating rating={item.rating} fontSize={16} starColor={Colors.yellow700} ratingColor={Colors.black}/>
+                    <StarRating rating={item.rating} fontSize={16} starColor={Colors.yellow700} ratingColor={theme.colors.text}/>
                     <View style={styles.price_container}>
                         <Text style={styles.product_price}>{formatPrice()}</Text>
                         <Text style={styles.discounted_price}>{fakeDiscountPrice()}</Text>

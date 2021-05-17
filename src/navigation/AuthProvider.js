@@ -31,7 +31,7 @@ export const AuthProvider = ({ children }) => {
             ...DarkTheme.colors,
             background: Colors.grey900,
             text: Colors.white,
-            darkBackground: Colors.black
+            darkBackground: Colors.blueGrey900
         }
     }
 

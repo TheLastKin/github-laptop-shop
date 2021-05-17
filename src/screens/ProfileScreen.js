@@ -17,7 +17,7 @@ const ProfileScreen = () => {
     }
 
     return (
-        <View style={[styles.container, {backgroundColor: theme.colors.background}]}>
+        <View style={[styles.container, {backgroundColor: theme.colors.darkBackground}]}>
             <View style={styles.topHead}>
                 <View style={styles.avatar_container}>
                     <Image style={styles.avatar} source={{ uri: 'http://10.0.2.2:4000/images/' + user.profilePicture }} />
