@@ -3,15 +3,25 @@ A React Native project composed of all simple usages of fetching NodeJS Restful 
 Must be used with a NodeJS server. Link to the NodeJS project: https://github.com/TheLastKin/github-laptop-shop-nodejs.
 
 Features used:
+
 1.Fetch Restful APIs
+
 2.Bottom Navigation
+
 3.useContext
+
 4.useEffect
+
 5.useNavigation
+
 6.useTheme
+
 7.React Native Collapsible Header ScrollView
+
 8.React Native Modal
+
 9.React Native Image Crop Picker
+
 10.Authorization (login)
 # Some screenshots of the app
 Login Screen
