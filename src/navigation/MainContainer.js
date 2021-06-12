@@ -73,6 +73,7 @@ const MainContainer = () => {
 const HomeContainer = () => {
     const {user} = useContext(AuthContext);
     const navigation = useNavigation();
+
     return(
         <HomeStack.Navigator initialRouteName="Home">
             <HomeStack.Screen
@@ -93,7 +94,7 @@ const HomeContainer = () => {
                     headerRight: () => {
                         return (
                             <TouchableOpacity onPress={() => navigation.navigate("ProfileContainer")}>
-                                <Avatar.Image source={{uri: 'http://10.0.2.2:4000/images/' + user.profilePicture}} size={45} style={{ marginRight: 15 }} />
+                                <Avatar.Image source={{uri: user.photoURL}} size={45} style={{ marginRight: 15 }} />
                             </TouchableOpacity>
                         );
                     },

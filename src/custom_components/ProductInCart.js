@@ -59,14 +59,14 @@ const ProductInCart = ({item, fetchProductCart, modalAction}) => {
                         <Entypo 
                             style={[[styles.quantity_lower, {color: theme.colors.text, borderColor: theme.colors.text}]]} 
                             name="chevron-thin-left" 
-                            size={20}
+                            size={18}
                             onPress={() => updateQuantity(-1)}
                         />
                         <Text style={[styles.card_quantity, {color: theme.colors.text}]}>{item.quantity}</Text>
                         <Entypo 
                             style={[styles.quantity_increase, {color: theme.colors.text, borderColor: theme.colors.text}]} 
                             name="chevron-thin-right" 
-                            size={20}
+                            size={18}
                             onPress={() => updateQuantity(1)}
                         />
                     </View>

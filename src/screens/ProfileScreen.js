@@ -6,21 +6,53 @@ import Entypo from 'react-native-vector-icons/Entypo';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import { AuthContext } from '../navigation/AuthProvider';
 import { useNavigation } from '@react-navigation/native';
+import auth from '@react-native-firebase/auth';
 
 const ProfileScreen = () => {
     const { user, logout } = useContext(AuthContext);
     const navigation = useNavigation();
     const theme = useTheme();
 
+    console.log(user);
+
     const makeTag = () => {
-        return "@" + user.email.substring(0, user.email.indexOf("@"));
+        if(user.email){
+            return "@" + user.email.substring(0, user.email.indexOf("@"));
+        }else{
+            return "@none";
+        }
+    }
+
+    const getAddress = () => {
+        let address = user.address?user.address:'Chưa có';
+        return <Text style={{ marginLeft: 8, color: theme.colors.text }}>{address}</Text>;
+    }
+
+    const getPhoneNumber = () => {
+        let phoneNumber = user.phoneNumber?user.phoneNumber:'Chưa có';
+        return <Text style={{ marginLeft: 8, color: theme.colors.text }}>{phoneNumber}</Text>;
+    }
+    
+    const getEmail = () => {
+        let email = user.email?user.email:'Chưa có';
+        return <Text style={{ marginLeft: 8, color: theme.colors.text }}>{email}</Text>;
+    }
+
+    const getFavorPoint = () => {
+        let favorPoint = user.favorPoint?user.favorPoint:0;
+        return <Title>{favorPoint}</Title>;
+    }
+
+    const getReputationPoint = () => {
+        let reputationPoint = user.reputationPoint?user.reputationPoint:0;
+        return <Title>{reputationPoint}</Title>;
     }
 
     return (
         <View style={[styles.container, {backgroundColor: theme.colors.darkBackground}]}>
             <View style={styles.topHead}>
                 <View style={styles.avatar_container}>
-                    <Image style={styles.avatar} source={{ uri: 'http://10.0.2.2:4000/images/' + user.profilePicture }} />
+                    <Image style={styles.avatar} source={{ uri: user.photoURL }} /> 
                     <MaterialCommunityIcons style={styles.avatar_edit} name="square-edit-outline" size={20} color={Colors.grey600}/>
                 </View>
                 <View style={styles.usertitles_section}>
@@ -31,24 +63,24 @@ const ProfileScreen = () => {
             <View style={styles.userinfo_section}>
                 <View style={styles.info_row}>
                     <Entypo name="location" size={20} color="#777777" />
-                    <Text style={{ marginLeft: 8, color: theme.colors.text }}>{user.address}</Text>
+                    {getAddress()}
                 </View>
                 <View style={styles.info_row}>
                     <MaterialCommunityIcons name="phone" size={20} color="#777777" />
-                    <Text style={{ marginLeft: 8, color: theme.colors.text }}>{user.phoneNumber}</Text>
+                    {getPhoneNumber()}
                 </View>
                 <View style={styles.info_row}>
                     <MaterialCommunityIcons name="email" size={20} color="#777777" />
-                    <Text style={{ marginLeft: 8, color: theme.colors.text }}>{user.email}</Text>
+                    {getEmail()}
                 </View>
             </View>
             <View style={styles.bonus_banner}>
                 <View style={styles.left_banner}>
-                    <Title>{user.favorPoint}</Title>
+                    {getFavorPoint()}
                     <Caption>Điểm thưởng</Caption>
                 </View>
                 <View style={styles.right_banner}>
-                    <Title>{user.reputationPoint}</Title>
+                    {getReputationPoint()}
                     <Caption>Độ uy tín</Caption>
                 </View>
             </View>

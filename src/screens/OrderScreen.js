@@ -95,7 +95,7 @@ const OrderScreen = () => {
     const renderUserInfo = () => {
         let warning = <FontAwesome name="warning" size={18} color={Colors.red700}/>;
         return(
-            <View style={[styles.section, {backgroundColor: theme.colors.darkBackground}]}>
+            <View style={[styles.section, {backgroundColor: theme.colors.background}]}>
                 <Text style={[styles.user_info, {color: theme.colors.text}]}>SĐT: {user.phoneNumber} {user.phoneNumber=="Chưa có"?warning:null}</Text>
                 <Text style={[styles.user_info, {color: theme.colors.text}]}>Địa chỉ người nhận: {user.address} {user.address=="Chưa có"?warning:null}</Text>
             </View>
@@ -114,14 +114,14 @@ const OrderScreen = () => {
     }
 
     return (
-        <View style={[styles.container, {backgroundColor: theme.colors.background}]}>
+        <View style={[styles.container, {backgroundColor: theme.colors.darkBackground}]}>
             <View style={styles.content}>
                 {renderUserInfo()}
-                <View style={[styles.section, {backgroundColor: theme.colors.darkBackground}]}>
+                <View style={[styles.section, {backgroundColor: theme.colors.background}]}>
                     <Text style={[styles.products_in_cart, {color: theme.colors.text}]}>Sản phẩm trong giỏ</Text>
                     {renderContent()}
                 </View>
-                <View style={[styles.section, { flexDirection: 'row', backgroundColor: theme.colors.darkBackground }]}>
+                <View style={[styles.section, { flexDirection: 'row', backgroundColor: theme.colors.background }]}>
                     <Text style={[styles.total_cost, { width: "35%", color: theme.colors.text }]}>Thành tiền: </Text>
                     <Text style={[styles.total_cost, { width: "65%", textAlign: 'right', color: theme.colors.text }]}>{calculateTotalCost()} VNĐ</Text>
                 </View>

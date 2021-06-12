@@ -11,7 +11,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 const LoginScreen = () => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
-    const {user, setUser, login} = useContext(AuthContext);
+    const { user, setUser, login, loginAsFacebook, loginAsGoogle} = useContext(AuthContext);
     const [showFooter, setShowFooter] = useState(true);
     const [modalVisible, setModalVisible] = useState(false);
     const [modalMessage, setModalMessage] = useState({});
@@ -95,14 +95,14 @@ const LoginScreen = () => {
                 </TouchableOpacity>
                 <View style={styles.social_button}>
                     <Text style={styles.login_as}>Login as: </Text>
-                    <TouchableOpacity>
+                    <TouchableOpacity onPress={() => loginAsGoogle()}>
                         <Avatar.Image 
                             source={google_icon} 
                             size={50}
                             style={{position: 'relative', left: 10}}
                         />
                     </TouchableOpacity>
-                    <TouchableOpacity>
+                    <TouchableOpacity onPress={() => loginAsFacebook()}>
                         <Avatar.Image 
                             source={facebook_icon} 
                             size={50}
